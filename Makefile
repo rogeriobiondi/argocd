@@ -32,7 +32,7 @@ push: ## Push image to docker hub
 .PHONY: test
 test: ## Push image to docker hub
 	@docker run --rm -p 9000:9000 rbiondi/api:latest
-
+ 
 .PHONY: kube-deploy
 kube-deploy: ## Deploy manifest to Kubernetes
 	@kubectl apply -f cd/manifests/api-deployment.yaml
