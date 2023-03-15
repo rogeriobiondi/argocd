@@ -24,6 +24,35 @@ sudo snap install kustomize
 TODO
 
 
+## Install ArgoCD
+
+```
+# Create namespace
+kubectl create namespace argocd
+# Apply manifest - wait a few seconds until complete
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+Get the admin user credentials:
+
+```
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+Port forward:
+
+```
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+Access the ArgoCD Console:
+
+http://localhost:8080
+
+user: admin
+password: **provided earlier**
+
+
 # Steps
 
 ## Test Locally
@@ -95,6 +124,11 @@ Undeploy app from Kubernetes
 ```
 make kube-delete
 ```
+
+## Check github Actions
+
+Take a look at the git hub actions in directory `.github\workflows\deploy.yaml`
+
 
 
 
