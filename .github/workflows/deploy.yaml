@@ -34,7 +34,7 @@ jobs:
       - name: update k8s 
         run: |
           cd k8s
-          kustomize edit set image api=rbiondi/api:${{ github.sha }}
+          kustomize edit set image api=rbiondi/app:${{ github.sha }}
           cat kustomization.yaml
 
       - name: commit
