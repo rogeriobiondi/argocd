@@ -132,3 +132,20 @@ Take a look at the git hub actions in directory `.github\workflows\deploy.yaml`
 
 
 
+## Create argoCD app ## 
+
+- Log into ArgoCD Console
+
+- Click the + NEW APP Button
+
+- Application Name: `api`
+- Project Name: `default`
+- Sync Policy: `Manual`
+- Check the `Auto-Create Namespace` option
+- Repository URL to `https://github.com/rogeriobiondi/argocd.git`
+- Path: `cd`
+- Destination -> Cluster URL: `https://kubernetes.default.svc`
+- Destination -> Namespace: `api`
+
+- 
+
