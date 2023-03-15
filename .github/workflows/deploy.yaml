@@ -1,0 +1,19 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: build docker image and push to hub
+        uses: docker/build-push-action@v1.1.0
+        with:
+          username: rbiondi
+          password: ${{ secrets.DOCKER_HUB_PWD }}
+          repository: rbiondi/app
+          tags: ${{ github.sha }}, latest
