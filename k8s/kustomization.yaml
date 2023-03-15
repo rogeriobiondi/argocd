@@ -5,6 +5,6 @@ resources:
 - api-service.yaml
 namespace: api
 images:
-- name: api
-  newName: rbiondi/api
-  newTag: 475a84f6503589bb1e8e61617b2b6c0bae628d3b
+  - name: api
+    newName: rbiondi/app
+    newTag: latest

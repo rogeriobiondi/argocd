@@ -23,11 +23,11 @@ run: ## Run the api
 
 .PHONY: build
 build: ## Run the api container image
-	@docker build -t rbiondi/api:latest .
+	@docker build -t rbiondi/app:latest .
 
 .PHONY: push
 push: ## Push image to docker hub
-	@docker push rbiondi/api:latest
+	@docker push rbiondi/app:latest
 
 .PHONY: test
 test: ## Push image to docker hub
@@ -46,3 +46,7 @@ kube-delete: ## Undeploy from Kubernetes
 .PHONY: kube-port-forward
 kube-port-forward: ## Kubernetes Port forward
 	@kubectl port-forward service/api-service 9000:9000
+
+.PHONY: kustomize
+kustomize: ## Run the kustomize build
+	@cd k8s; kustomize build

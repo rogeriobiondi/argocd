@@ -127,9 +127,9 @@ make kube-delete
 
 ## Check github Actions
 
-Take a look at the git hub actions in directory `.github\workflows\deploy.yaml`
-
-
+- Take a look at the git hub actions in directory `.github\workflows\deploy.yaml`
+- Go to Settings -> Actions -> General
+- Check the Workflow permissions `Read and write permissions`.
 
 
 ## Create argoCD app ## 
@@ -143,9 +143,13 @@ Take a look at the git hub actions in directory `.github\workflows\deploy.yaml`
 - Sync Policy: `Manual`
 - Check the `Auto-Create Namespace` option
 - Repository URL to `https://github.com/rogeriobiondi/argocd.git`
-- Path: `cd`
+- Path: `k8s`
 - Destination -> Cluster URL: `https://kubernetes.default.svc`
 - Destination -> Namespace: `api`
 
-- 
+Click `CREATE` button.
+
+The app will be created and `OutOfSync`
+- Click the `Sync` Button.
+- Click the `Synchronize` Button.
 
