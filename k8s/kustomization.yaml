@@ -6,5 +6,5 @@ resources:
 namespace: api
 images:
 - name: api
-  newName: rbiondi/api
+  newName: rbiondi/app
   newTag: 2ffeb2b2b2325152bea36643a4b7545152f4c9cb
