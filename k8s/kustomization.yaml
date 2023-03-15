@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - api-deployment.yaml
-  - api-service.yaml
+- api-deployment.yaml
+- api-service.yaml
 namespace: api
 images:
-  - name: api
-    newName: api
-    newTag: v2
+- name: api
+  newName: rbiondi/api
+  newTag: 475a84f6503589bb1e8e61617b2b6c0bae628d3b
