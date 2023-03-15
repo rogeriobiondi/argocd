@@ -33,7 +33,7 @@ jobs:
 
       - name: update k8s 
         run: |
-          cd cd/manifests
+          cd k8s
           kustomize edit set image api=rbiondi/api:${{ github.sha }}
           cat kustomization.yaml
 
@@ -45,4 +45,4 @@ jobs:
 
       - name: push
         uses: ad-m/github-push-action@master 
-        
+
