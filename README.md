@@ -241,6 +241,8 @@ Test:
 
 http://localhost:9000/healthz
 
+![service-check](images/service-check.png)
+
 
 ## Undeploy the Helm Application
 
