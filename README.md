@@ -1,28 +1,47 @@
 # argocd
-ArgoCD continuous deployment sample
+
+ArgoCD continuous deployment sample using both K8s manifests and Helm Chart.
+When the application is commited to the `main` branch, it will be built using the git hub actions and deployed to Kubernetes using ArgoCD.
+
 
 # Pre reqs
 
-- Docker
+- GNU Make (optional)
 
-## Use a remote or local Kubernetes installation
+- Docker - https://docs.docker.com/
 
-TODO
+- Kubernetes Cluster: if you don't have, you may use a tool such Kind or Microk8s - https://microk8s.io/
 
-## Install kubectl
+- Kubectl - https://kubernetes.io/docs/tasks/tools/
 
-TODO
+- Kustomize - https://kustomize.io/
 
-## Install Kustomize
+- Helm - https://helm.sh/docs/intro/install/
+
+
+## Help
+
+Make is not mandatory. You can open the `Makefile` and run each command yourself (good for learning)
 
 ```
-sudo snap install kustomize
+make help
+
+build                Run the api container image
+clean                Reset project and clean containers
+helm-create          Run the helm install in debug mode
+helm-dry-run         Run the helm install in debug mode
+helm-install         Deploy the application via helm
+helm-uninstall       Undeploy the helm application
+help                 Command help
+install              Install dependencies
+kube-create          Deploy manifest to Kubernetes
+kube-delete          Undeploy from Kubernetes
+kube-port-forward    Kubernetes Port forward
+kustomize            Run the kustomize build
+push                 Push image to docker hub
+run                  Run the api
+test                 Push image to docker hub
 ```
-
-## Install Helm
-
-TODO
-
 
 ## Install ArgoCD
 
@@ -45,7 +64,7 @@ Port forward:
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
-Access the ArgoCD Console:
+Test the ArgoCD Console:
 
 http://localhost:8080
 
@@ -55,7 +74,7 @@ password: **provided earlier**
 
 # Steps
 
-## Test Locally
+## Test de API Locally
 
 ```
 make run
@@ -67,7 +86,6 @@ http://localhost:9000/
 http://localhost:9000/items/1
 http://localhost:9000/healthz
 http://localhost:9000/docs
-
 
 
 ## Build Container Image
@@ -88,7 +106,7 @@ make push
 make test
 ```
 
-go to the addresses to check if the image is working:
+Check if the image is working:
 
 http://localhost:9000/
 http://localhost:9000/items/1
@@ -96,7 +114,7 @@ http://localhost:9000/healthz
 http://localhost:9000/docs
 
 
-## Test direct deployment to Kubernetes (Manifests)
+## Test direct deployment to Kubernetes (using Manifests)
 
 Deploy to kubernetes:
 
@@ -138,6 +156,9 @@ make kube-delete
 
 - Click the + NEW APP Button
 
+![create-app-1](images/app-create1.png)
+![create-app-2](images/app-create2.png)
+
 - Application Name: `api`
 - Project Name: `default`
 - Sync Policy: `Manual`
@@ -149,9 +170,13 @@ make kube-delete
 
 Click `CREATE` button.
 
+![create-out-of-sync](images/app-out-of-sync.png)
+
 The app will be created and `OutOfSync`
 - Click the `Sync` Button.
 - Click the `Synchronize` Button.
+
+
 
 
 # Helm Chart Deployment
@@ -230,6 +255,11 @@ make helm-uninstall
 
 - Click the + NEW APP Button
 
+
+![create-app-1](images/app-create1.png)
+![create-app-3](images/app-create3.png)
+
+
 - Application Name: `api`
 - Project Name: `default`
 - Sync Policy: `Manual`
@@ -239,8 +269,15 @@ make helm-uninstall
 - Destination -> Cluster URL: `https://kubernetes.default.svc`
 - Destination -> Namespace: `api`
 
+
 Click `CREATE` button.
+
+![create-out-of-sync](images/app-out-of-sync.png)
 
 The app will be created and `OutOfSync`
 - Click the `Sync` Button.
 - Click the `Synchronize` Button.
+
+
+
+![app deployment](app.png)
