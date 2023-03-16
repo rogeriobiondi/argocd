@@ -40,7 +40,7 @@ jobs:
       - name: update helm values 
         uses: mikefarah/yq@master
         with: 
-          cmd: yq '.api.image.tag = "${{ github.sha }}"' values.yaml > helm/values.yaml
+          cmd: yq '.api.image.tag = "${{ github.sha }}"' helm/values.yaml > helm/values.yaml
 
       - name: commit
         run: |
