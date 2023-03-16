@@ -279,5 +279,7 @@ The app will be created and `OutOfSync`
 - Click the `Synchronize` Button.
 
 
+The deployed application:
 
-![app deployment](app.png)
+
+![app deployment](images/app.png)
