@@ -1,7 +1,0 @@
-kube:
-  namespace: api
-api:
-  replicas: 2
-  port: 9000
-  image:
-    tag: latest

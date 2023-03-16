@@ -223,3 +223,24 @@ http://localhost:9000/healthz
 # Uninstall the application
 make helm-uninstall
 ```
+
+## Create argoCD app ## 
+
+- Log into ArgoCD Console
+
+- Click the + NEW APP Button
+
+- Application Name: `api`
+- Project Name: `default`
+- Sync Policy: `Manual`
+- Check the `Auto-Create Namespace` option
+- Repository URL to `https://github.com/rogeriobiondi/argocd.git`
+- Path: `helm`
+- Destination -> Cluster URL: `https://kubernetes.default.svc`
+- Destination -> Namespace: `api`
+
+Click `CREATE` button.
+
+The app will be created and `OutOfSync`
+- Click the `Sync` Button.
+- Click the `Synchronize` Button.
