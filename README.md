@@ -83,9 +83,13 @@ make run
 go to the addresses to check if the image is working:
 
 http://localhost:9000/
+
 http://localhost:9000/items/1
+
 http://localhost:9000/healthz
+
 http://localhost:9000/docs
+
 
 
 ## Build Container Image
@@ -109,9 +113,13 @@ make test
 Check if the image is working:
 
 http://localhost:9000/
+
 http://localhost:9000/items/1
+
 http://localhost:9000/healthz
+
 http://localhost:9000/docs
+
 
 
 ## Test direct deployment to Kubernetes (using Manifests)
@@ -132,6 +140,7 @@ make kube-port-forward
 go to the addresses to check if the image is working:
 
 http://localhost:9000/
+
 http://localhost:9000/docs
 
 
@@ -157,6 +166,7 @@ make kube-delete
 - Click the + NEW APP Button
 
 ![create-app-1](images/app-create1.png)
+
 ![create-app-2](images/app-create2.png)
 
 - Application Name: `api`
@@ -239,7 +249,9 @@ kubectl port-forward service/helmapp-service -n api 9000:9000
 
 Test:
 
+
 http://localhost:9000/healthz
+
 
 ![service-check](images/service-check.png)
 
@@ -259,6 +271,7 @@ make helm-uninstall
 
 
 ![create-app-1](images/app-create1.png)
+
 ![create-app-3](images/app-create3.png)
 
 
