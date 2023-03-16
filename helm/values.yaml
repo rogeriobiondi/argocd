@@ -4,4 +4,4 @@ api:
   replicas: 2
   port: 9000
   image:
-    tag: 5a7a0108237ce3d6587f8a3d178df17b4d5dca8c
+    tag: 8053a63134d6b55a47020b0e9efa635173f1c4dc
