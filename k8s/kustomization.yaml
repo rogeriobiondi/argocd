@@ -7,4 +7,4 @@ namespace: api
 images:
 - name: api
   newName: rbiondi/app
-  newTag: e82171a24a7668b878e55db87067847c93c6ec77
+  newTag: 9667aebe90527b78ad283c00c755cf6f7e9719bb
