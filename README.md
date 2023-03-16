@@ -153,3 +153,73 @@ The app will be created and `OutOfSync`
 - Click the `Sync` Button.
 - Click the `Synchronize` Button.
 
+
+# Helm Chart Deployment
+
+## Create your helm charts
+
+- create a helm chart using the following command:
+
+```
+make helm-create
+```
+
+- clean the `helm/templates` folder and copy your manifests there. Parametrize them.
+- clean your values.yaml file
+- clean your NOTES.txt file
+
+## Testing your helm charts
+
+```
+helm install api helm --debug --dry-run
+```
+
+## Deploy the Helm Application
+
+```
+# Install the application
+make helm-install
+
+namespace/api created
+NAME: helmapp
+LAST DEPLOYED: Thu Mar 16 10:39:33 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Deploy successful.
+
+# Check if the application is installed
+kubectl get all --namespace api
+NAME                               READY   STATUS    RESTARTS   AGE
+pod/helmapp-api-5d9575cb45-mjmhb   1/1     Running   0          14s
+pod/helmapp-api-5d9575cb45-pql7q   1/1     Running   0          14s
+
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/helmapp-service   ClusterIP   10.152.183.95   <none>        9000/TCP   14s
+
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/helmapp-api   2/2     2            2           14s
+
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/helmapp-api-5d9575cb45   2         2         2       14s
+```
+
+Port forward:
+
+```
+kubectl port-forward service/helmapp-service -n api 9000:9000
+```
+
+Test:
+
+http://localhost:9000/healthz
+
+
+## Undeploy the Helm Application
+
+```
+# Uninstall the application
+make helm-uninstall
+```

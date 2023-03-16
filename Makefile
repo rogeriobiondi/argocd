@@ -33,20 +33,40 @@ push: ## Push image to docker hub
 test: ## Push image to docker hub
 	@docker run --rm -p 9000:9000 rbiondi/api:latest
  
-.PHONY: kube-deploy
-kube-deploy: ## Deploy manifest to Kubernetes
-	@kubectl apply -f cd/manifests/api-deployment.yaml
-	@kubectl apply -f cd/manifests/api-service.yaml
+.PHONY: kube-create
+kube-create: ## Deploy manifest to Kubernetes
+	@kubectl create namespace api
+	@kubectl apply -f k8s/api-deployment.yaml --namespace api
+	@kubectl apply -f k8s/api-service.yaml --namespace api
 
 .PHONY: kube-delete
 kube-delete: ## Undeploy from Kubernetes
-	@kubectl delete -f cd/manifests/api-deployment.yaml
-	@kubectl delete -f cd/manifests/api-service.yaml
+	@kubectl delete -f k8s/api-deployment.yaml --namespace api
+	@kubectl delete -f k8s/api-service.yaml --namespace api
+	@kubectl delete namespace api
 
 .PHONY: kube-port-forward
 kube-port-forward: ## Kubernetes Port forward
-	@kubectl port-forward service/api-service 9000:9000
+	@kubectl port-forward service/api-service 9000:9000 --namespace api
 
 .PHONY: kustomize
 kustomize: ## Run the kustomize build
 	@cd k8s; kustomize build
+
+.PHONY: helm-create
+helm-create: ## Run the helm install in debug mode
+	@helm create helm
+
+.PHONY: helm-dry-run
+helm-dry-run: ## Run the helm install in debug mode
+	@helm install helmapp helm --debug --dry-run
+
+.PHONY: helm-install
+helm-install: ## Deploy the application via helm
+	@kubectl create namespace api
+	@helm install helmapp helm
+
+.PHONY: helm-uninstall
+helm-uninstall: ## Undeploy the helm application
+	@helm uninstall helmapp
+	@kubectl delete namespace api
