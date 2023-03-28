@@ -284,7 +284,7 @@ make helm-uninstall
 - Destination -> Cluster URL: `https://kubernetes.default.svc`
 - Destination -> Namespace: `api`
 
-
+     
 Click `CREATE` button.
 
 ![create-out-of-sync](images/app-out-of-sync.png)
